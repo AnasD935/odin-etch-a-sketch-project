@@ -3,4 +3,5 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background: rgb(52, 175, 252);
 }

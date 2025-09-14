@@ -1,6 +1,5 @@
 const container = document.querySelector(".container");
 container.style.display = "flex";
-//container.style.flexDirection = "column"
 container.style.justifyContent = "center";
 container.style.alignItems = "center";
 container.style.height = "1200px"
@@ -11,7 +10,16 @@ let n = 16;
 let no = 256;
 let size = 75;
 let start = 240;
+let o = 0;
 let Arr1 = [];
+
+function getRandomColor() 
+{
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256); 
+    return `rgba(${r}, ${g}, ${b}, ${o})`; 
+}
 
 function generate (n, no, size, start)
 {
@@ -23,13 +31,17 @@ function generate (n, no, size, start)
         Arr1[i].style.borderTop = "1px solid black";
         Arr1[i].style.borderLeft = "1px solid black";
         Arr1[i].style.boxSizing = "border-box";//this one makes border inside box not outside!
+        Arr1[i].style.background = "white";
         if (i % n == 0)
             Arr1[i].style.borderRight = "1px solid black";
         if (i > start && i <= no)
             Arr1[i].style.borderBottom = "1px solid black";
         container.appendChild(Arr1[i]);
         Arr1[i].addEventListener("mouseover", () =>{
-            Arr1[i].style.background = "gray";
+            Arr1[i].style.background = getRandomColor();
+            o += 0.1;
+            if (o > 1)
+                o = 0;
         });
     }
 }
@@ -54,6 +66,7 @@ up.style.height = "100px";
 up.style.display = "flex";
 up.style.justifyContent = "center";
 up.style.alignItems = "center";
+
 btn = document.createElement("button");
 btn.textContent = "Chnge board size";
 btn.style.width = "180px"
@@ -68,4 +81,4 @@ btn.addEventListener("click", () => {
 userGrid();
 });
 
-generate(n, no, size, start);
+generate(n, no, size, start);//default size = 16
